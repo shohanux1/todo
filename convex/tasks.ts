@@ -24,6 +24,13 @@ export const getTasks = query({
   },
 });
 
+export const get = query({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.db.query("tasks").collect();
+  },
+});
+
 export const createTask = mutation({
   args: { text: v.string() },
   handler: async (ctx, args): Promise<Id<"tasks">> => {
